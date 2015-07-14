@@ -1,0 +1,105 @@
+//----------------------------------------------------------
+// Zurui Design Variables
+//----------------------------------------------------------
+$zurui-black: #000000;
+$zurui-gray:  #666666;
+$zurui-white: #ffffff;
+
+//----------------------------------------------------------
+// Zurui Border
+//----------------------------------------------------------
+@mixin zurui-border-top($op-black: 0.1, $op-white: 0.5) {
+  border-top: 1px solid rgba($zurui-black, $op-black);
+  box-shadow: 0 1px 0 rgba($zurui-white, $op-white) inset;
+}
+
+@mixin zurui-border-right($op-black: 0.1, $op-white: 0.5) {
+  border-right: 1px solid rgba($zurui-black, $op-black);
+  box-shadow: -1px 0 0 rgba($zurui-white, $op-white) inset;
+}
+
+@mixin zurui-border-bottom($op-black: 0.1, $op-white: 0.5) {
+  border-right: 1px solid rgba($zurui-black, $op-black);
+  box-shadow: 0 1px 0 rgba($zurui-white, $op-white);
+}
+
+@mixin zurui-border-left($op-black: 0.1, $op-white: 0.5) {
+  border-left: 1px solid rgba($zurui-black, $op-black);
+  box-shadow: -1px 0 0 rgba($zurui-white, $op-white);
+}
+
+//----------------------------------------------------------
+// Zurui Text Shadow
+//----------------------------------------------------------
+@mixin zurui-ts-000($op: 0.2) {
+  text-shadow: 1px -1px rgba($black, $op);
+}
+
+@mixin zurui-ts-fff($op: 0.5) {
+  text-shadow: -1px 1px rgba($white, $op);
+}
+
+//----------------------------------------------------------
+// Zurui Gradation
+//----------------------------------------------------------
+@mixin zurui-gradient-top-lighten($color: $zurui-gray, $lighten: 10%) {
+  background-color: $color;
+  @include background-image(linear-gradient(lighten($color, $lighten) 0%, $color 100%));
+}
+
+@mixin zurui-gradient-top-darken($color: $zurui-gray, $darken: 10%) {
+  background-color: $color;
+  @include background-image(linear-gradient(darken($color, $darken) 0%, $color 100%));
+}
+
+//----------------------------------------------------------
+// Zurui Box Shadow
+//----------------------------------------------------------
+@mixin zurui-box-outer($shadow: 0.15) {
+  box-shadow: 0 0 2px rgba($zurui-black, $shadow);
+}
+
+@mixin zurui-box-inner($shadow: 0.2) {
+  box-shadow: 0 0 0 20px rgba($zurui-black, $shadow);
+}
+
+@mixin zurui-box-deboss($border: 0.1, $shadow: 0.05, $highlight: 0.8) {
+  border: 1px solid rgba($zurui-black, $border);
+  box-shadow: -1px 1px 2px rgba($zurui-black, $shadow) inset, -1px 1px 0 rgba($zurui-white, $highlight);
+}
+
+@mixin zurui-box-emboss($border: 0.1, $shadow: 0.05, $highlight: 0.5) {
+  border: 1px solid rgba($zurui-black, $border);
+  box-shadow: -1px 1px 0 rgba($zurui-black, $shadow), -1px 1px 0 rgba($zurui-white, $highlight) inset;
+}
+
+//----------------------------------------------------------
+// Zurui Button
+//----------------------------------------------------------
+@mixin zurui-button($font-size: 16px, $bg-color: $white, $text-color: $black) {
+  display: inline-block;
+  padding: 1em 2em;
+  font-weight: bold;
+  color: $text-color;
+  border-radius: 4px;
+  font-size: $font-size;
+
+  @include zurui-ts-000(0.1);
+  @include zurui-gradient-top-lighten($bg-color);
+  @include zurui-box-emboss();
+
+  &:hover {
+    text-decoration: none;
+
+    @include zurui-gradient-top-lighten(darken($bg-color, 5%));
+  }
+}
+
+@mixin zurui-button-color($bg-color: $white, $text-color: $black) {
+  color: $text-color;
+  @include zurui-gradient-top-lighten($bg-color);
+
+  &:hover {
+    @include zurui-gradient-top-lighten(darken($bg-color, 5%));
+  }
+}
